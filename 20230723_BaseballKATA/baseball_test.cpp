@@ -18,6 +18,7 @@ public:
 TEST_F(BaseballFixture, ThrowExceptionInvalidArgument) {
 	assertionIllegalArgument("12");
 	assertionIllegalArgument("12s");
+	assertionIllegalArgument("121");
 }
 
 int main() {
