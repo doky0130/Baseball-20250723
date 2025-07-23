@@ -22,8 +22,15 @@ public:
 				result.strikes++;
 			}
 		}
-		if (result.strikes == 3) result.solved = true;
 
+		if (guessNumber[0] == question[1])result.balls++;
+		if (guessNumber[0] == question[2])result.balls++;
+		if (guessNumber[1] == question[0])result.balls++;
+		if (guessNumber[1] == question[2])result.balls++;
+		if (guessNumber[2] == question[0])result.balls++;
+		if (guessNumber[2] == question[1])result.balls++;
+
+		if (result.strikes == 3) { result.solved = true; }
 		return result;
 	}
 
