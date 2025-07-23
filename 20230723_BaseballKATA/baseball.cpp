@@ -17,20 +17,10 @@ public:
 
 		GuessResult result = { false, 0, 0 };
 		
-		for (int i = 0; i < 3; i++) {
-			if (guessNumber[i] == question[i]) {
-				result.strikes++;
-			}
-		}
-
-		if (guessNumber[0] == question[1])result.balls++;
-		if (guessNumber[0] == question[2])result.balls++;
-		if (guessNumber[1] == question[0])result.balls++;
-		if (guessNumber[1] == question[2])result.balls++;
-		if (guessNumber[2] == question[0])result.balls++;
-		if (guessNumber[2] == question[1])result.balls++;
-
+		result.strikes = countStrikes(guessNumber);
+		result.balls = countBalls(guessNumber);
 		if (result.strikes == 3) { result.solved = true; }
+
 		return result;
 	}
 
@@ -57,5 +47,26 @@ private:
 		if (guessNumber[0] == guessNumber[2]) return true;
 		if (guessNumber[1] == guessNumber[2]) return true;
 		return false;
+	}
+	int countStrikes(const std::string& guessNumber){
+		int strikes = 0;
+		for (int idx = 0; idx < 3; idx++) {
+			if (guessNumber[idx] == question[idx]) {
+				strikes++;
+			}
+		}
+		return strikes;
+	}
+
+	int  countBalls(const std::string& guessNumber){
+		int balls = 0;
+		for (int guessIdx = 0; guessIdx < 3; guessIdx++) {
+			for (int questionIdx = 0; questionIdx < 3; questionIdx++) {
+				if (guessNumber[guessIdx] != question[questionIdx]) continue;
+				if (guessIdx == questionIdx) continue;
+				else balls++;
+			}
+		}
+		return balls;
 	}
 };
